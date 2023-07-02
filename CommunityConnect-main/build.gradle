@@ -1,0 +1,64 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'ecc.project'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext['groovy.version'] = '3.0.9'
+apply plugin: 'groovy'
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-groovy-templates'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+//	implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
+
+	//database
+	implementation 'mysql:mysql-connector-java'
+	implementation 'mysql:mysql-connector-java:8.0.27'
+
+
+	implementation 'com.amazonaws:aws-java-sdk:1.12.454'
+	implementation 'com.coveo:spring-boot-parameter-store-integration:1.5.0'
+
+
+
+	//Java Version 2.x AWS SDKs
+	implementation 'software.amazon.awssdk:sqs:2.20.51' //sqs
+	implementation 'software.amazon.awssdk:s3:2.20.51' //s3
+	implementation 'software.amazon.awssdk:cloudwatchlogs:2.20.26' //cloudwatchlogs
+	implementation 'com.amazonaws:aws-java-sdk-secretsmanager:1.12.455' //secret manager
+	implementation 'software.amazon.awssdk:sns:2.20.52' //sns
+
+
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+//	testImplementation 'org.spockframework:spock-spring:2.3-groovy-4.0'
+//	testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0'
+
+}
+
+test {
+	useJUnitPlatform()
+}
